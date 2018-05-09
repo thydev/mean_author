@@ -1,0 +1,12 @@
+<h3>Editing...</h3>
+<a [routerLink]="['/home']">Home</a>
+<p>{{message}}</p>
+<p>{{ author | json}}</p>
+<form (submit)="onSubmit()">
+  <label>
+    Author name:
+    <input type="text" name="author.name" [(ngModel)]="author.name">
+  </label>
+  
+  <input type="submit" value="Submit" />
+</form>

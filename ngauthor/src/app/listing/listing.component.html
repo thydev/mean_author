@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let a of authors">
+    <div>
+      <span>{{a.name}}</span>
+      <button routerLink = "/edit/{{a._id}}" >Edit</button>
+      <button (click)="onDelete(a._id)" >Delete</button>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,12 @@
+
+<h3>Favoite authors</h3>
+<a [routerLink]="['/home']">Home</a>
+<p>{{message}}</p>
+<form (submit)="onSubmit()">
+  <label>
+    Author name:
+    <input type="text" name="author.name" [(ngModel)]="author.name">
+  </label>
+  
+  <input type="submit" value="Submit" />
+</form>
