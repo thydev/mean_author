@@ -97,36 +97,25 @@ module.exports = {
                     res.json({message: "Error", error: err})
                 }
             });
-        
-            // Author.findOneAndUpdate(
-            //     { "_id": req.params.id, "quotes._id": req.body.quote_id },
-            //     { 
-            //         "$set": {
-            //             "quotes.$": quote
-            //         }
-            //     },
-            //     function(err,doc) {
-            
-            //     }
-            // );
     },
 
     voteQuote: (req, res) => {
+        console.log(req.body);
         const ObjectId = mongoose.Types.ObjectId; 
-        Author.findOneAndUpdate({_id: new ObjectId(req.params.id)})
+        Author.findOne({_id: new ObjectId(req.params.id)})
             .exec((err, item)=>{
                 if (!err) {
                     let q = item.quotes.id(req.body.quote_id);
                     q.vote = parseInt(q.vote) + parseInt(req.body.vote);
                     item.save((err2, item2) => {
                         if (err2) {
-                            res.json({ message: 'Error', error: err2});
+                            res.json({ message: 'Error2', error: err2});
                         } else {
                             res.json({message: "Success", data: item2});
                         }
                     });
                 } else {
-                    res.json( {message: "Error", error: err})
+                    res.json( {message: "Error1", error: err})
                 }
             });
 
@@ -142,7 +131,25 @@ module.exports = {
         //     }
         // );
 
-    }
+    },
 
+    deleteQuote: (req, res) => {
+        const ObjectId = mongoose.Types.ObjectId; 
+        Author.findOne({_id: new ObjectId(req.params.id)})
+            .exec((err, item)=>{
+                if (!err) {
+                    item.quotes.id(req.params.quote_id).remove();
+                    item.save((err2, item2) => {
+                        if (err2) {
+                            res.json({ message: 'Error', error: err2});
+                        } else {
+                            res.json({message: "Success", data: item2});
+                        }
+                    });
+                } else {
+                    res.json( {message: "Error", error: err})
+                }
+            });
+    }
 
 }

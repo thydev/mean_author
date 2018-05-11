@@ -3,23 +3,21 @@ import { AuthorService } from '../author.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-editauthor',
-  templateUrl: './editauthor.component.html',
-  styleUrls: ['./editauthor.component.css']
+  selector: 'app-quotes',
+  templateUrl: './quotes.component.html',
+  styleUrls: ['./quotes.component.css']
 })
-export class EditauthorComponent implements OnInit {
+
+export class QuotesComponent implements OnInit {
   author: any;
-  message = '';
   constructor(
     private _authorService: AuthorService,
     private _route: ActivatedRoute
   ) {
-    this.author = {name: ''};
-    console.log('constructor');
+    // this.author = {name: ''};
   }
 
   ngOnInit() {
-    console.log('init');
     this._route.params.subscribe((params: Params) => {
       this.getAuthor(params['id']);
     });
@@ -35,12 +33,22 @@ export class EditauthorComponent implements OnInit {
         }
       });
   }
-  onSubmit() {
-    const obsItem = this._authorService.update(this.author._id, this.author);
+
+  vote(id: string, vote: number) {
+    const quote = {'quote_id': id, 'vote': vote};
+    const obsItem = this._authorService.vote(this.author._id, quote);
     obsItem.subscribe(data => {
       console.log(data);
-      this.message = data['message'];
-      // this.author = {name: ''};
+      this.author = data['data'];
     });
   }
+
+  onDelete(quote_id: string) {
+    const obsItem = this._authorService.deleteQuote(this.author._id, quote_id);
+    obsItem.subscribe(data => {
+      console.log(data);
+      this.author = data['data'];
+    });
+  }
+
 }

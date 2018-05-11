@@ -11,6 +11,8 @@ import { NewauthorComponent } from './newauthor/newauthor.component';
 import { EditauthorComponent } from './editauthor/editauthor.component';
 import { ListingComponent } from './listing/listing.component';
 import { HomeComponent } from './home/home.component';
+import { QuotesComponent } from './quotes/quotes.component';
+import { QuotesaddComponent } from './quotesadd/quotesadd.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomeComponent } from './home/home.component';
     NewauthorComponent,
     EditauthorComponent,
     ListingComponent,
-    HomeComponent
+    HomeComponent,
+    QuotesComponent,
+    QuotesaddComponent
   ],
   imports: [
     BrowserModule,

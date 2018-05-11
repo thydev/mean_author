@@ -37,4 +37,17 @@ export class AuthorService {
   delete(id: string) {
     return this._http.delete(this.baseUrl + id);
   }
+
+  vote(id: string, quote) {
+    console.log(id, quote);
+    return this._http.post(this.baseUrl + 'quotes/vote/' + id, quote);
+  }
+
+  deleteQuote(id: string, quote_id: string) {
+    return this._http.delete(this.baseUrl + 'quotes/' + id + '/' + quote_id);
+  }
+
+  createQuote(id: string, quote) {
+    return this._http.post(this.baseUrl + 'quotes/' + id, quote);
+  }
 }

@@ -32,6 +32,10 @@ module.exports = (app) => {
     app.post(baseUrl + 'quotes/vote/:id', (req, res) => {
         authors.voteQuote(req, res);
     });
+
+    app.delete(baseUrl + 'quotes/:id/:quote_id', (req, res) => {
+        authors.deleteQuote(req, res);
+    });
     // this route will be triggered if any of the routes above did not match
     app.all("*", (req,res,next) => {
         res.sendFile(path.resolve("./ngauthor/dist/ngauthor/index.html"))

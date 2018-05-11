@@ -1,0 +1,13 @@
+<a [routerLink]="['/home']">Home</a>
+<div *ngIf="author">
+  <h3>Provide a quote by {{author.name}}</h3>
+  <p>{{message}}</p>
+  <form (submit)="onSubmit($event)" >
+      <label>
+        Quote:
+        <input type="text" name="content" />
+      </label>
+      
+      <input type="submit" value="Submit" />
+    </form>
+</div>

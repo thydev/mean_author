@@ -2,6 +2,7 @@
   <li *ngFor="let a of authors">
     <div>
       <span>{{a.name}}</span>
+      <button routerLink = "/quotes/{{a._id}}">View quotes</button>
       <button routerLink = "/edit/{{a._id}}" >Edit</button>
       <button (click)="onDelete(a._id)" >Delete</button>
     </div>
